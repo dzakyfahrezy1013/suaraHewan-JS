@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Tugas 7 JS | Dzaky Candy Fahrezy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<style>
+        .flex-container {
+            display: flex;
+            background-color: #675D50;
+            text-align: center;
+            align-items: center;
+            font-weight: bold;
+			justify-content: center;
+			
+        }
+
+        .flex-container > div {
+            background-color: #ABC4AA;
+            margin: 10px;
+            padding: 50px;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            flex: 2;
+            position: relative;
+            width: calc(100% - 60px);
+            opacity: 0.8;
+        }
+
+        .flex-container > div > span {
+            position: absolute;
+            top: 50%;
+            left: 80px;
+			right: 80px;
+            transform: translate(0, -50%);
+			text-align: center;
+        }
+		button{
+			font-size: large;
+			font-weight: bold;
+		}
+
+	</style>
+</head>
+<body>
+    <h1 align="center">Macam Macam Suara Hewan</h1>
+    <h3 align="center">*rules : klik pada button nama hewan</h3>
+	<div class="accordion" id="accordionExample">
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingOne">
+		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			Hewan Ternak
+		</button>
+		</h2>
+		<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		<div class="accordion-body">
+			<div class="flex-container">
+				<div class="bebek">
+					<span class="nama-hewan">Bebek</span>
+				</div>
+				<div class="kambing">
+					<span class="nama-hewan">Kambing</span>
+				</div>
+				<div class="sapi">
+					<span class="nama-hewan">Sapi</span>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingTwo">
+		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			Hewan Peliharaan
+		</button>
+		</h2>
+		<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+		<div class="accordion-body">
+			<div class="flex-container" >
+				<div class="anjing" >
+					<span class="nama-hewan">Anjing</span>
+				</div>
+				<div class="kucing" >
+					<span class="nama-hewan">Kucing</span>
+				</div>
+                <div class="burungHantu" >
+					<span class="nama-hewan">Burung Hantu</span>
+				</div>
+                <div class="burungPipit" >
+					<span class="nama-hewan">Burung Pipit</span>
+				</div>
+                <div class="burungMerak" >
+					<span class="nama-hewan">Burung Merak</span>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingThree">
+		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			Hewan Buas
+		</button>
+		</h2>
+		<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+		<div class="accordion-body">
+			<div class="flex-container" >
+				<div class="singa" >
+					<span class="nama-hewan">Singa</span>
+				</div>
+				<div class="serigala" >
+					<span class="nama-hewan">Serigala</span>
+				</div>
+				<div class="cobra" >
+					<span class="nama-hewan">Cobra</span>
+				</div>  
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	<script src="js/jquery.js"></script>
+	<script>
+		$("document").ready(function () {
+			var currentAudio = null;
+
+			// Suara Hewan Ternak
+
+			// Suara Bebek
+			$("div.bebek").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px","height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/bebek.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-bebek.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+            
+			// kambing
+			$("div.kambing").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/kambing.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-kambing.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});			
+
+			// sapi
+			$("div.sapi").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/sapi.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-sapi.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+			// Suara Hewan Peliharaan
+			// Suara Anjing
+			$("div.anjing").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px","height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/anjing.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-anjing.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+
+			// kucing
+			$("div.kucing").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/kucing.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-kucing.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+            // Burung hantu
+			$("div.burungHantu").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px","height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/burung_hantu.jpeg')",
+					"background-size": "contain",
+					"background-position": "center",
+				
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-burung-hantu.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+			// Burung pipit
+			$("div.burungPipit").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/burung_pipit.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-burung-pipit.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+            // Burung Merak
+			$("div.burungMerak").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/burung_merak.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-burung-merak.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+			// Suara Hewan Buas
+			// Singa
+			$("div.singa").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px","height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/singa.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-singa.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+
+			// Srigala
+			$("div.serigala").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/serigala.jpg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-serigala.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});			
+
+			// Cobra
+			$("div.cobra").click(function () {
+				if (currentAudio) {
+				currentAudio.pause();
+				}
+
+				$(this).css({
+					"width": "200px",
+					"height": "200px",
+					"background-repeat": "no-repeat",
+					"background": "url('img/cobra.jpeg')",
+					"background-size": "contain",
+					"background-position": "center",
+				});
+
+				currentAudio = $("<audio></audio>")
+				.on("ended", function () {
+					$(this).remove();
+					currentAudio = null;
+				})
+				.attr({
+					src: "audio/suara-kobra.mp3",
+					volume: 0.5,
+					autoplay: "autoplay",
+				})
+				.appendTo("body")[0];
+			});
+		});
+	</script>
+</body>
+</html>
